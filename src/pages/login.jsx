@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import backimg from "../img/company3.jpg";
+import Header from "./Header.js";
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,7 +28,15 @@ class Login extends React.Component {
   }
 
   render() {
+    const { isToggled, userToggled, setIsToggled, setUserToggled } = this.props;
     return (
+      <>
+        <Header
+          isToggled={isToggled}
+          userToggled={userToggled}
+          setIsToggled={setIsToggled}
+          setUserToggled={setUserToggled}
+        />
       <div className="container" style={{ margin: 0, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
         <div
           className="img-box"
@@ -75,6 +84,7 @@ class Login extends React.Component {
           </form>
         </div>
       </div>
+      </>
     );
   }
 }
