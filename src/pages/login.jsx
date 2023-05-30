@@ -1,92 +1,134 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import backimg from "../img/company3.jpg";
 import Header from "./Header.js";
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
+const Container = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+const ImgBox = styled.div`
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+`;
+
+const BackgroundImg = styled.div`
+  margin-top: 2px;
+  width: 100%;
+  height: 100%;
+  background-image: url(${backimg});
+  background-size: cover;
+  background-position: left;
+`;
+
+const LoginBox = styled.div`
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const Label = styled.label`
+  &.label1 {
+    /* styles for label1 */
   }
 
-  handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    this.setState({
-      [name]: value
-    });
+  &.label2 {
+    /* styles for label2 */
   }
 
-  handleSubmit = (event) => {
+  &.label3 {
+    /* styles for label3 */
+  }
+
+  &.label4 {
+    /* styles for label4 */
+  }
+`;
+
+const LoginButton = styled.button`
+  /* styles for the login button */
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+`;
+
+const Login = ({ isToggled, userToggled, setIsToggled, setUserToggled }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'username') {
+      setUsername(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    // this.state.username과 this.state.password를 사용하여 로그인 처리 로직을 구현합니다.
-  }
+    // Use username and password for login logic
+  };
 
-  render() {
-    const { isToggled, userToggled, setIsToggled, setUserToggled } = this.props;
-    return (
-      <>
-        <Header
-          isToggled={isToggled}
-          userToggled={userToggled}
-          setIsToggled={setIsToggled}
-          setUserToggled={setUserToggled}
-        />
-      <div className="container" style={{ margin: 0, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-        <div
-          className="img-box"
-          style={{
-            width: '50vw', // 가로는 화면의 반만 차게
-            height: '100vh', // 세로는 화면에 꽉 차게
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            className="background-img"
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundImage: `url(${backimg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'left',
-            }}
-          ></div>
-        </div>
-        <div className="login-box" style={{ flex: 1, padding: '2rem' }}>
+  return (
+    <>
+      <Header
+        isToggled={isToggled}
+        userToggled={userToggled}
+        setIsToggled={setIsToggled}
+        setUserToggled={setUserToggled}
+      />
+      <Container>
+        <ImgBox>
+          <BackgroundImg />
+        </ImgBox>
+        <LoginBox>
           <h1>로그인</h1>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="username" className="label1">이메일 또는 아이디</label><br />
-            <input
+          <form onSubmit={handleSubmit}>
+            <Label htmlFor="username" className="label1">이메일 또는 아이디</Label><br />
+            <Input
               type="text"
               id="username"
               name="username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
+              value={username}
+              onChange={handleInputChange}
               required
-            /><br />
-            <label htmlFor="password" className="label2">비밀번호</label><br />
-            <input
+            />
+            <Label htmlFor="password" className="label2">비밀번호</Label><br />
+            <Input
               type="password"
               id="password"
               name="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
+              value={password}
+              onChange={handleInputChange}
               required
-            /><br />
-            <label className="label3">아이디/비밀번호 찾기</label>
-            <label className="label4">회원가입</label><br />
-            <button type="submit">로그인</button>
+            />
+            <Label className="label3">아이디/비밀번호 찾기</Label>
+            <Label className="label4">회원가입</Label><br />
+            <LoginButton type="submit">로그인</LoginButton>
           </form>
-        </div>
-      </div>
-      </>
-    );
-  }
-}
+        </LoginBox>
+      </Container>
+    </>
+  );
+};
 
 export default Login;
