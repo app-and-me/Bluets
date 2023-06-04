@@ -3,11 +3,11 @@ import './App.css';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/login.jsx';
 import SignupPage from './pages/signup';
-
+import DictionaryPage from './pages/dictionary.jsx';
 function App() {
   return (
     <div className='App'>
-      <LoginPage/>
+      <DictionaryPage/>
     </div>
   );
 }

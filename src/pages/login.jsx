@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import backimg from "../img/company3.jpg";
 import Header from "./Header.js";
@@ -69,10 +69,12 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
-const Login = ({ isToggled, userToggled, setIsToggled, setUserToggled }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [isToggled, setIsToggled] = useState(false);
+  const [userToggled, setUserToggled] = useState(false);
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === 'username') {
