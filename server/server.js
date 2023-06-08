@@ -25,13 +25,14 @@ db.connect((err)=>{
         console.log("MYSQL Connection Success");
     }
 });
+
 app.use(cors());
 
 app.use( express.static( path.join(__dirname, '../client/build') ) );
 
 app.get('*', (req, res) => {
   console.log(__dirname)
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 app.listen(5000, function () {
