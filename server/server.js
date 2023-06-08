@@ -14,7 +14,7 @@ dotenv.config({
 // mysql이랑 연결
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST, 
-    user: process.env.DATABASE_USER, 
+    user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASS, 
     database: process.env.DATABASE 
 });
